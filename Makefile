@@ -1,7 +1,7 @@
 identifier=io.andrian.PawExtensions.NodeHttpCodeGenerator
 extensions_dir=$(HOME)/Library/Containers/com.luckymarmot.Paw/Data/Library/Application Support/com.luckymarmot.Paw/Extensions/
 
-.PHONY: install build symlink
+.PHONY: install archive
 
 node_modules:
 	npm install 
