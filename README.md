@@ -1,12 +1,13 @@
 # Node.js Code Generator (Paw Extension)
 
-A [Paw Extension](http://luckymarmot.com/paw/extensions/) that generates Node.js 4.x (without dependencies) code.
+A [Paw Extension](http://luckymarmot.com/paw/extensions/) that generates Node.js (without dependencies) code.
+
+At least Node.js 4.x is required (arrow functions, consts, etc). No additional npm depenencies in resulting code. 
 
 ## Installation
 
 - Checkout this repo
 - type 'make install' 
-
 
 ## Development
 
@@ -24,6 +25,10 @@ During development, watch for changes:
 npm install 
 npm run watch
 ```
+
+## Tests 
+
+This stuff just works on my computer, no tests yet. Not all Paw options are currently used to generate code. 
 
 ## License
 
