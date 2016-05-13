@@ -1,5 +1,4 @@
 
-
 declare function require(module: string) : any;
 
 declare function registerCodeGenerator(callback : Object) : void;
@@ -9,6 +8,11 @@ declare interface Request {
     method: string;
     headers: Object;
     body: any;
+    httpBasicAuth: Object;
+    followRedirects: boolean, 
+    sendCookies: boolean, 
+    storeCookies: boolean, 
+    timeout: number    
 }
 
 class ParsedURL {
@@ -52,7 +56,7 @@ class NodeHttpCodeGenerator {
         return `
 (function(callback) {
     'use strict';
-    
+        
     const httpTransport = require('${parsedUrl.schema}');
     const responseEncoding = 'utf8';
     const httpOptions = {
@@ -62,7 +66,13 @@ class NodeHttpCodeGenerator {
         method: '${request.method}',
         headers: ${JSON.stringify(headers)}
     };
-
+    httpOptions.headers['User-Agent'] = 'node ' + process.version;
+ 
+${
+    (request.httpBasicAuth?   '    // Using Basic Auth ' + JSON.stringify(request.httpBasicAuth) + "\n" : '') +
+    (request.followRedirects? "    // Paw Follow Redirects option is not supported\n" : '') +
+    (request.storeCookies?    "    // Paw Store Cookies option is not supported\n" : '') 
+}
     const request = httpTransport.request(httpOptions, (res) => {
         let responseBufs = [];
         let responseStr = '';
@@ -74,19 +84,24 @@ class NodeHttpCodeGenerator {
             else {
                 responseStr = responseStr + chunk;            
             }
-        });
-        res.on('end', () => {
+        }).on('end', () => {
             responseStr = responseBufs.length > 0 ? 
                 Buffer.concat(responseBufs).toString(responseEncoding) : responseStr;
             
-            callback(res.statusCode, res.headers, responseStr);
+            callback(null, res.statusCode, res.headers, responseStr);
         });
+        
+    })
+    .setTimeout(${request.timeout})
+    .on('error', (error) => {
+        callback(error);
     });
-
-    request.write(${JSON.stringify(request.body)});
+    request.write(${JSON.stringify(request.body)})
     request.end();
+    
 
-})((statusCode, headers, body) => { 
+})((error, statusCode, headers, body) => {
+    console.log('ERROR:', error); 
     console.log('STATUS:', statusCode);
     console.log('HEADERS:', JSON.stringify(headers));
     console.log('BODY:', body);
