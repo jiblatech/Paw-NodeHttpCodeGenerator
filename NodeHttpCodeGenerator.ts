@@ -4,6 +4,7 @@ declare function require(module: string) : any;
 declare function registerCodeGenerator(callback : Object) : void;
 
 declare interface Request {
+    name: string;
     url: string; 
     method: string;
     headers: Object;
@@ -43,17 +44,27 @@ class NodeHttpCodeGenerator {
     static languageHighlighter = "js";
     static identifier = "io.andrian.PawExtensions.NodeHttpCodeGenerator";
 
-    generate(context: any) {
-        const request : Request = context.getCurrentRequest();
+    multipleRequestNotice(request: Request[]) {
+        if (request.length > 1) {
+            return "// Warning: requests below are going to be executed in parallel\n\n"
+        }
+        return '';
+    }
+
+    generate(context: any, requests: Request[], options) {
+        return this.multipleRequestNotice(requests) + requests.map(this.generateRequest).join("\n");
+    }
+
+
+    generateRequest(request: Request) {
         const headers = request.headers;
         for (var key in headers) {
             headers[key] = headers[key].trim();
         }
         
         const parsedUrl = new ParsedURL(request.url);
-      
-        
-        return `
+
+        return `// request ${request.name} 
 (function(callback) {
     'use strict';
         
