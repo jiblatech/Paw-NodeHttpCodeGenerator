@@ -1,0 +1,12 @@
+language: node_js
+node_js: 6
+before_deploy:
+- make archive
+deploy:
+  provider: releases
+  api_key:
+    secure: j4ADAR+KlUckGDPlIKwkhLmoLedLHZt620rjvrWaDgZeeUhqnMojJueTGdruRCZNo8780njd71/wImzfBRWUYmF1HTHgEBBTC3C4IpJi0e0OUm8TFo5NJJJNUlu6ekbZYJ67z1+7TFLspNOb3PZss0iPN1lhwOVwKfrazlH7mXHhmiZ2Mp9GE20goUOdcMzunHwe2dq4TaarcFY/ou9WU3uXuvVpl6H1/0nR67hspW9Zxj5jc8LxG38Ufy6poTjbaqyM/0uGjo+VEVz6ypRuV9r8wr7jwkbzF3/IPCXujfWGQj0Xa+4j5rMsKzSlue9ocyJ2ciDYtPdzz6/3UJDHB6Vh/dfbYns96Ee5Z/5aZeOvzBvm+2o0jvs8ka12TC4HiVPGweFyW8LBpi04s8a+VSP8XMXlBQO7tXzSlbdR4TsdC8ooZxWgSoXoBe3tg5UTMnzeBFvPLWRr2p2FBdl72a1GRlqbboJ1RTykckxGigjvm2OOnuNb40sJ+CK8vLhrwjc30bsK88r9JAsq9SzmgphBBm8qaaFYliwqGPAzQOGCGqIoSp9mtR4Eqzn4prWNUbSXpvUAy4pKkmBQDvkv5pR3g6YAsBqkav4FD5/eySmwkhWn7s8TKofI+jkQrD8vBQLp8W2DeQ39/q/RuL2LMNSYHZjjai+/sYuufVjTeOQ=
+  file: build/nodejsGenerator.zip
+  on:
+    tags: true
+    repo: AndrianBdn/Paw-NodeHttpCodeGenerator
