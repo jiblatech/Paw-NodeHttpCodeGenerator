@@ -19,10 +19,8 @@ function grep_assert {
 }
 
 
-cd `dirname $0` 
-cd ..
 make NodeHttpCodeGenerator.js
-cd test 
+cd test
 cat ../NodeHttpCodeGenerator.js call.js > testrun-generator.js
 node testrun-generator.js > testrun-executor.js 
 node testrun-executor.js > testrun-result.txt
