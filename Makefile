@@ -1,7 +1,9 @@
 identifier=io.andrian.PawExtensions.NodeHttpCodeGenerator
 extensions_dir=$(HOME)/Library/Containers/com.luckymarmot.Paw/Data/Library/Application Support/com.luckymarmot.Paw/Extensions/
 
-.PHONY: install archive
+.PHONY: install archive all
+
+all: NodeHttpCodeGenerator.js node_modules
 
 node_modules:
 	npm install 

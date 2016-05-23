@@ -3,6 +3,7 @@
         "allowJs": false
     },
     "exclude" : [
-        "NodeHttpCodeGenerator.js"
+        "NodeHttpCodeGenerator.js", 
+        "node_modules"
     ]
 }
