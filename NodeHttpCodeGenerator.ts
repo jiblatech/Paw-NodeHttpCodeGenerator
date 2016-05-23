@@ -44,19 +44,19 @@ class NodeHttpCodeGenerator {
     static languageHighlighter = "js";
     static identifier = "io.andrian.PawExtensions.NodeHttpCodeGenerator";
 
-    multipleRequestNotice(request: Request[]) {
+    private multipleRequestNotice(request: Request[]) {
         if (request.length > 1) {
             return "// Warning: requests below are going to be executed in parallel\n\n"
         }
         return '';
     }
 
-    generate(context: any, requests: Request[], options) {
+    public generate(context: any, requests: Request[], options) {
         return this.multipleRequestNotice(requests) + requests.map(this.generateRequest).join("\n");
     }
 
 
-    generateRequest(request: Request) {
+    private generateRequest(request: Request) {
         const headers = request.headers;
         for (var key in headers) {
             headers[key] = headers[key].trim();
@@ -65,6 +65,7 @@ class NodeHttpCodeGenerator {
         const parsedUrl = new ParsedURL(request.url);
 
         return `// request ${request.name} 
+        // ${JSON.stringify(request)}
 (function(callback) {
     'use strict';
         

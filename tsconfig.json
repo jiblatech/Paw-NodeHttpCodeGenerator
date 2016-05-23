@@ -2,7 +2,7 @@
     "compilerOptions" : {
         "allowJs": false
     },
-    "files" : [
-        "NodeHttpCodeGenerator.ts"
-    ]  
+    "exclude" : [
+        "NodeHttpCodeGenerator.js"
+    ]
 }
