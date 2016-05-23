@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "watch" : "nodemon",
-    "test": "sh test/test.sh"
+    "test": "bash test/test.sh"
   },
   "keywords": [],
   "author": "Andrian Budantsov",
