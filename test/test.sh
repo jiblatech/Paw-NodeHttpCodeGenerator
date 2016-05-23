@@ -18,11 +18,10 @@ function grep_assert {
     fi 
 }
 
-
+cd `dirname $0`
+cd ..
 make all
 cd test
-pwd
-ls -la
 cat ../NodeHttpCodeGenerator.js call.js > testrun-generator.js
 node testrun-generator.js > testrun-executor.js 
 node testrun-executor.js > testrun-result.txt

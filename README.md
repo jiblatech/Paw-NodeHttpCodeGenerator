@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AndrianBdn/Paw-NodeHttpCodeGenerator.svg?branch=master)](https://travis-ci.org/AndrianBdn/Paw-NodeHttpCodeGenerator)
+
 # Node.js Code Generator (Paw Extension)
 
 A [Paw Extension](http://luckymarmot.com/paw/extensions/) that generates Node.js (without dependencies) code.
