@@ -15,7 +15,7 @@ install: NodeHttpCodeGenerator.js
 	mkdir -p "$(extensions_dir)$(identifier)/"
 	cp README.md NodeHttpCodeGenerator.js LICENSE "$(extensions_dir)$(identifier)/"
 
-archive:
+archive: all
 	rm -Rf ./build/ 
 	mkdir -p "./build/$(identifier)"
 	cp README.md NodeHttpCodeGenerator.js LICENSE "./build/$(identifier)"
