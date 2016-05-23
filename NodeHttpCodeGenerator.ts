@@ -65,7 +65,6 @@ class NodeHttpCodeGenerator {
         const parsedUrl = new ParsedURL(request.url);
 
         return `// request ${request.name} 
-        // ${JSON.stringify(request)}
 (function(callback) {
     'use strict';
         
