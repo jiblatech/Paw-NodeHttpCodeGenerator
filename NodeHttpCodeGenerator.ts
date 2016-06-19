@@ -52,6 +52,9 @@ class NodeHttpCodeGenerator {
     }
 
     public generate(context: any, requests: Request[], options) {
+        if (!Array.isArray(requests)) {
+            requests = [context.getCurrentRequest()];
+        }
         return this.multipleRequestNotice(requests) + requests.map(this.generateRequest).join("\n");
     }
 
