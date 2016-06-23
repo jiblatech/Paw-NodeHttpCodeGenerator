@@ -30,7 +30,7 @@ npm run watch
 
 ## Tests 
 
-This stuff just works on my computer, no tests yet. Not all Paw options are currently used to generate code. 
+There are some basic functional tests, which might be run using test/test.sh 
 
 ## License
 
