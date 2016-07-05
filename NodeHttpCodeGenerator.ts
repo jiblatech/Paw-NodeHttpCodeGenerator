@@ -110,7 +110,9 @@ ${
     .on('error', (error) => {
         callback(error);
     });
-    request.write(${JSON.stringify(request.body)})
+${
+    (request.body.length > 0) ? '    request.write(' + JSON.stringify(request.body) + ');' : '' 
+}    
     request.end();
     
 
